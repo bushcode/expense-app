@@ -2,7 +2,6 @@
 import BudgetCard from "./BudgetCard";
 import { EmptyState } from "./EmptyState";
 import { lazy } from "react";
-import { useBudgetContext } from "@/context/budget-context";
 import { Budget } from "types";
 
 interface BudgetListProps {
