@@ -2,32 +2,11 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Expense } from "types";
 import { initializeApp } from "firebase/app";
-import {
-  Timestamp,
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from "firebase/firestore";
+import { Timestamp, getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebase";
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-
-// export const getExpenses = async (budgetId: string) => {
-//   const expensesCollection = collection(db, "expenses");
-//   const expensesQuery = query(
-//     expensesCollection,
-//     where("budgetId", "==", budgetId)
-//   );
-//   let expenses: Expense[] = [];
-//   const docSnap = await getDocs(expensesQuery);
-//   docSnap.forEach((doc) => {
-//     expenses.push(doc.data() as Expense);
-//   });
-//   return expenses;
-// };
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -52,25 +31,11 @@ export function setProgress({ percentage }: { percentage: number }) {
 
 export const sumBudgetExpenses = (budgetId: string, expenses: Expense[]) => {
   const budgetSpent = expenses.reduce((acc, expense) => {
-    // check if expense.id === budgetId I passed in
     if (expense.budgetId !== budgetId) return acc;
-    // add the current amount to my total
     return (acc += expense.amount);
   }, 0);
   return budgetSpent;
 };
-
-// export const sumBudgetExpenses = async (budgetId: string) => {
-//   const expenses = await getExpenses(budgetId);
-
-//   const budgetSpent = expenses.reduce((acc, expense) => {
-//     // check if expense.id === budgetId I passed in
-//     if (expense.budgetId !== budgetId) return acc;
-//     // add the current amount to my total
-//     return (acc += expense.amount);
-//   }, 0);
-//   return budgetSpent;
-// };
 
 export const calculateBudgetPercentageLeft = (
   totalBudget: number,
