@@ -36,7 +36,6 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
   }
 
   function handleDeleteExpense(id: string) {
-    console.log(id);
     setExpenseId(id);
     setOpen(!open);
   }

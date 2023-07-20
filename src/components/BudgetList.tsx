@@ -3,18 +3,18 @@ import BudgetCard from "./BudgetCard";
 import { EmptyState } from "./EmptyState";
 import { lazy } from "react";
 import { useBudgetContext } from "@/context/budget-context";
+import { Budget } from "types";
 
 interface BudgetListProps {
   header: string;
+  budgets: Budget[];
 }
 
 const CreateBudgetButton = lazy(
   () => import("@/components/CreateBudgetButton")
 );
 
-export default function BudgetList({ header }: BudgetListProps) {
-  const { budgets } = useBudgetContext();
-  const dashboardBudgets = budgets.slice(0, 6);
+export default function BudgetList({ header, budgets }: BudgetListProps) {
   return (
     <>
       <div className="py-2">
@@ -27,7 +27,7 @@ export default function BudgetList({ header }: BudgetListProps) {
 
         {budgets.length ? (
           <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-[68rem] md:grid-cols-3 grid-cols-1">
-            {dashboardBudgets.map((budget) => (
+            {budgets.map((budget) => (
               <BudgetCard budgets={budgets} budget={budget} key={budget.id} />
             ))}
           </div>
