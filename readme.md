@@ -26,7 +26,7 @@ An expense app that allows users to create budgets and manage expenses.
 
 ## Instructions to Run the App Locally
 
-To run the app locally, follow these steps:
+To run the app locally:
 
 1. Clone the repository to your local machine.
 2. Navigate to the project directory in your terminal.
