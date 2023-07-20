@@ -1,10 +1,10 @@
-import { SidebarNavItem } from "../../types";
 import { cn } from "../lib/utils";
 import { Icons } from "../components/Icons";
 import { Link, useLocation } from "react-router-dom";
+import { NavItem } from "types";
 
 interface SidebarProps {
-  items: SidebarNavItem[];
+  items: NavItem[];
 }
 
 function Sidebar({ items }: SidebarProps) {

@@ -1,4 +1,4 @@
-import Button, { ButtonProps, ButtonVariants } from "./ui/button";
+import Button, { ButtonProps } from "./ui/button";
 import { Icons } from "./Icons";
 import {
   Dialog,
@@ -20,17 +20,12 @@ import { useState } from "react";
 import { useFirestore, useUser } from "reactfire";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
 
 type FormData = z.infer<typeof createBudgetValidator>;
 
 interface CreateBudgetButtonProps extends ButtonProps {}
 
-export default function CreateBudgetButton({
-  className,
-  variant,
-  ...props
-}: CreateBudgetButtonProps) {
+export default function CreateBudgetButton({}: CreateBudgetButtonProps) {
   const [isLoading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
@@ -87,16 +82,7 @@ export default function CreateBudgetButton({
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            className={cn(
-              ButtonVariants({ variant }),
-              {
-                "cursor-not-allowed opacity-60": isLoading,
-              },
-              className
-            )}
-            {...props}
-          >
+          <Button variant="default" size="sm">
             <Icons.wallet size={14} className="mr-1" /> Create Budget
           </Button>
         </DialogTrigger>

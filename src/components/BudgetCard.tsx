@@ -41,7 +41,7 @@ function BudgetCard({ budget, budgets }: BudgetCardProps) {
   return (
     <Link
       to={`/app/budgets/${budget.id}`}
-      className="relative overflow-hidden rounded-lg border cursor-pointer hover:bg-zinc-100 transition-all duration-100 ease-out hover:ease-in"
+      className="rounded-lg border cursor-pointer hover:bg-zinc-100 transition-all duration-100 ease-out hover:ease-in"
     >
       <div className="flex h-full flex-col rounded-md">
         <div className="px-2 py-4">
@@ -83,11 +83,6 @@ function BudgetCard({ budget, budgets }: BudgetCardProps) {
               ${formatCurrency(totalRemaining)} remaining
             </span>
           </div>
-          {/* <div className="flex justify-end">
-            <Button variant="default" size="sm">
-              <Icons.eye className="w-5 h-5" />
-            </Button>
-          </div> */}
         </div>
       </div>
     </Link>

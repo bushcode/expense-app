@@ -9,7 +9,7 @@ export default function Home() {
   const { budgets } = useBudgetContext();
   const dashboardBudgets = budgets.slice(0, 6);
   return (
-    <div className="grid items-start gap-8">
+    <div>
       <SuspenseWithPerf
         fallback={<BudgetLoading />}
         traceId="firestore-demo-root"
@@ -21,7 +21,7 @@ export default function Home() {
         fallback={<ExpenseLoading />}
         traceId="firestore-demo-root"
       >
-        <ExpenseList header="Recent Expenses" />
+        <ExpenseList header="Expenses" />
       </SuspenseWithPerf>
     </div>
   );

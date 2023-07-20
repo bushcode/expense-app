@@ -48,26 +48,26 @@ function BudgetOverview() {
         </div>
       </div>
       <div className="flex flex-col gap-2 md:max-w-lg">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-slate-800">
+        <h1 className="text-4xl lg:text-5xl font-bold text-slate-800">
           {matchingBudget?.name}
         </h1>
-        <>
+        <div>
           <span className="text-sm text-slate-600">Budget Limit</span>
-          <h3 className="text-xl md:text-3xl lg:text-5xl font-bold text-slate-800">
+          <h3 className="text-3xl lg:text-5xl font-bold text-slate-800">
             ${formatCurrency(matchingBudget?.amount)}
           </h3>
-        </>
+        </div>
         <div className="flex gap-4">
           <div>
             <span className="text-sm text-slate-600">Total Spent</span>
-            <h3 className="text-xl md:text-2xl font-bold text-slate-800">
+            <h3 className="text-2xl font-bold text-slate-800">
               ${formatCurrency(totalSpent)}
             </h3>
           </div>
 
           <div>
             <span className="text-sm text-slate-600">Budget Balance</span>
-            <h3 className="text-xl md:text-2xl font-bold text-slate-800">
+            <h3 className="text-2xl font-bold text-slate-800">
               ${formatCurrency(budgetBalance)}
             </h3>
           </div>
@@ -92,16 +92,22 @@ function BudgetOverview() {
               {Math.floor(percentageLeft)}% deficit.
             </span>
           )}
-
-          <CreateExpenseButton variant="ghost" budgets={selectionBudget} />
         </>
       </div>
 
       {matchingExpenses.length ? (
-        <ExpensesTable
-          expenses={matchingExpenses}
-          tableCaption={`A list of expenses for ${matchingBudget?.name}.`}
-        />
+        <>
+          <div className="flex justify-between items-center -mb-6">
+            <h1 className="font-bold text-2xl md:text-4xl text-slate-900">
+              Expenses
+            </h1>
+            <CreateExpenseButton variant="ghost" budgets={selectionBudget} />
+          </div>
+          <ExpensesTable
+            expenses={matchingExpenses}
+            tableCaption={`A list of expenses for ${matchingBudget?.name}.`}
+          />
+        </>
       ) : (
         <EmptyState>
           <EmptyState.Icon name="banknote" className="text-slate-800" />

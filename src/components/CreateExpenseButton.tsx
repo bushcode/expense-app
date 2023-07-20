@@ -1,4 +1,4 @@
-import Button, { ButtonProps, ButtonVariants } from "./ui/button";
+import Button, { ButtonProps } from "./ui/button";
 import { Icons } from "./Icons";
 
 import {
@@ -23,7 +23,6 @@ import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import { useFirestore, useUser } from "reactfire";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { cn } from "@/lib/utils";
 import { createExpenseValidator } from "@/lib/validators/createExpenseValidator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
@@ -104,10 +103,7 @@ export default function CreateExpenseButton({
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            className={cn(ButtonVariants({ variant }), className)}
-            {...props}
-          >
+          <Button variant="default" size="sm">
             <Icons.banknote size={14} className="mr-1" /> Create Expense
           </Button>
         </DialogTrigger>

@@ -4,17 +4,13 @@ import { Icons } from "../src/components/Icons";
 export interface NavItem {
   title: string;
   href: string;
+  icon?: keyof typeof Icons;
 }
 
-export type SidebarNavItem = {
-  title: string;
-  href: string;
-  icon?: keyof typeof Icons;
-};
+export type MainNavItem = NavItem;
 
 export type DashboardConfig = {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
+  navLinks: NavItem[];
 };
 
 export type Budget = {

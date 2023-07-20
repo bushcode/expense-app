@@ -86,6 +86,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
               <TableCell>
                 <div
                   className={cn(
+                    "whitespace-nowrap",
                     ButtonVariants({ variant: "ghost", size: "sm" })
                   )}
                 >

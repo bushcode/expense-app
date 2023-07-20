@@ -14,16 +14,15 @@ function ExpenseList({ header }: ExpenseListProps) {
   const dashboardExpenses = expenses.slice(0, 6);
 
   return (
-    <>
+    <div className="overflow-x-auto">
       {budgets.length ? (
-        <div>
-          <div className="flex align-center justify-between">
-            <h1 className="font-bold text-3xl md:text-4xl mb-8 text-slate-900">
+        <div className="mt-8">
+          <div className="flex items-center justify-between">
+            <h1 className="font-bold text-xl md:text-4xl text-slate-900">
               {header}
             </h1>
             <CreateExpenseButton
               variant="default"
-              className="mr-1"
               size="sm"
               budgets={budgets}
             />
@@ -45,7 +44,7 @@ function ExpenseList({ header }: ExpenseListProps) {
           )}
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
 
