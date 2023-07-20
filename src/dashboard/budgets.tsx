@@ -1,13 +1,9 @@
 import BudgetList from "@/components/BudgetList";
-import { useBudgetContext } from "@/context/budget-context";
 
-type Props = {};
-
-export default function Budgets({}: Props) {
-  const { budgets } = useBudgetContext();
+export default function Budgets() {
   return (
     <div className="grid items-start gap-8">
-      <BudgetList budgets={budgets} header="Your Budgets" />
+      <BudgetList header="Your Budgets" />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { cn } from "../../lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
-import { ButtonHTMLAttributes, Ref, forwardRef } from "react";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

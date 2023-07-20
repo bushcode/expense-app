@@ -6,8 +6,6 @@ export interface NavItem {
   href: string;
 }
 
-export type MainNavItem = NavItem;
-
 export type SidebarNavItem = {
   title: string;
   href: string;

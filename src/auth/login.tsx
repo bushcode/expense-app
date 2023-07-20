@@ -1,12 +1,10 @@
 import Button from "../components/ui/button";
-import { Chrome, Github, MessagesSquare } from "lucide-react";
+import { Chrome } from "lucide-react";
 import { useAuth } from "reactfire";
 import { GoogleAuthProvider, signInWithPopup, Auth } from "firebase/auth";
 import { Icons } from "../components/Icons";
 
-type Props = {};
-
-function Login({}: Props) {
+function Login() {
   const auth = useAuth();
 
   const signInWithGoogle = async (auth: Auth) => {

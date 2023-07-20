@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Button from "./ui/button";
 import { Icons } from "./Icons";
 import { Budget } from "types";
 import {
@@ -10,30 +9,28 @@ import {
   sumBudgetExpenses,
 } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { useExpenseContext } from "@/context/expenses-context";
 
 interface BudgetCardProps {
   budget: Budget;
+  budgets: Budget[];
 }
 
 //TODO: color code progress bar and amount remaining
 
-function BudgetCard({ budget }: BudgetCardProps) {
+function BudgetCard({ budget, budgets }: BudgetCardProps) {
+  const { expenses } = useExpenseContext();
   const [totalSpent, setTotalSpent] = React.useState<number>(0);
   const [totalRemaining, setTotalRemaining] = React.useState<number>(0);
+  const { id: budgetId } = budget;
+
+  const matchingBudget = budgets.find((budget) => budget.id === budgetId);
 
   useEffect(() => {
-    const fetchBudgetData = async () => {
-      try {
-        const spent = await sumBudgetExpenses(budget.id);
-        const budgetBalance = budget.amount - spent;
-        setTotalSpent(spent);
-        setTotalRemaining(budgetBalance);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchBudgetData();
+    const spent = sumBudgetExpenses(matchingBudget!.id, expenses);
+    const budgetBalance = budget.amount - spent;
+    setTotalSpent(spent);
+    setTotalRemaining(budgetBalance);
   });
 
   const percentageLeft = calculateBudgetPercentageLeft(

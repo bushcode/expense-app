@@ -1,10 +1,8 @@
-import BudgetActions from "@/components/BudgetActions";
-import CreateBudgetButton from "@/components/CreateBudgetButton";
 import CreateExpenseButton from "@/components/CreateExpenseButton";
 import { EmptyState } from "@/components/EmptyState";
 import ExpensesTable from "@/components/ExpensesTable";
 import { Icons } from "@/components/Icons";
-import Button, { ButtonVariants } from "@/components/ui/button";
+import { ButtonVariants } from "@/components/ui/button";
 import { useBudgetContext } from "@/context/budget-context";
 import { useExpenseContext } from "@/context/expenses-context";
 import {
@@ -16,9 +14,7 @@ import {
 } from "@/lib/utils";
 import { Link, useParams } from "react-router-dom";
 
-type Props = {};
-
-function BudgetOverview({}: Props) {
+function BudgetOverview() {
   const { expenses } = useExpenseContext();
   const { budgets } = useBudgetContext();
   let { budgetId } = useParams();
@@ -86,9 +82,17 @@ function BudgetOverview({}: Props) {
               )}
             ></div>
           </div>
-          <span className="text-xs text-slate-600 -mt-2">
-            {Math.floor(percentageLeft)}% of total budget limit remaining
-          </span>
+
+          {percentageLeft >= 0 ? (
+            <span className="text-xs text-slate-600 -mt-2">
+              {Math.floor(percentageLeft)}% of total budget limit remaining.
+            </span>
+          ) : (
+            <span className="text-xs text-red-600 -mt-2">
+              {Math.floor(percentageLeft)}% deficit.
+            </span>
+          )}
+
           <CreateExpenseButton variant="ghost" budgets={selectionBudget} />
         </>
       </div>

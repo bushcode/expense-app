@@ -26,7 +26,6 @@ interface EmptyStateIconProps extends Partial<React.SVGProps<SVGSVGElement>> {
 EmptyState.Icon = function EmptyPlaceHolderIcon({
   name,
   className,
-  ...props
 }: EmptyStateIconProps) {
   const Icon = Icons[name];
 

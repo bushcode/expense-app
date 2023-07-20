@@ -11,9 +11,8 @@ import {
 } from "@/components/ui/table";
 import Button, { ButtonVariants } from "./ui/button";
 import { Icons } from "./Icons";
-import { Budget, Expense } from "types";
+import { Expense } from "types";
 import { cn, convertTimestamp, formatCurrency } from "@/lib/utils";
-import { Timestamp } from "firebase/firestore";
 import { useBudgetContext } from "@/context/budget-context";
 import DeleteExpenseButton from "./DeleteExpense";
 import { deleteDoc, doc, getFirestore } from "firebase/firestore";
@@ -43,16 +42,12 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
   }
 
   const deleteExpense = async (expenseId: string) => {
-    console.log(expenseId);
-
     const firestore = getFirestore();
     const expenseRef = doc(firestore, "expenses", expenseId);
 
     try {
       setIsDeleteLoading(true);
       await deleteDoc(expenseRef);
-      console.log("Expense deleted successfully!");
-      // Perform any additional logic or state updates after deletion
       setIsDeleteLoading(false);
       toast({
         title: "Success",
@@ -65,8 +60,6 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
         title: "Error",
         description: "Error deleting expense. Please try again.",
       });
-      console.error("Error deleting expense:", error);
-      // Handle any error scenarios
     }
   };
 
@@ -90,9 +83,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell className="font-medium">{expense.name}</TableCell>
               <TableCell>${formatCurrency(expense.amount)}</TableCell>
-              <TableCell className="">
-                {convertTimestamp(expense?.createdAt)}
-              </TableCell>
+              <TableCell>{convertTimestamp(expense?.createdAt)}</TableCell>
               <TableCell>
                 <div
                   className={cn(
@@ -117,6 +108,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
               openDialog={open}
               setOpenDialog={setOpen}
               onDelete={() => deleteExpense(expenseId)}
+              isDeleting={isDeleteLoading}
             />
           </>
         ))}
