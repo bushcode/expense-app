@@ -17,7 +17,7 @@ function ExpenseList({ header }: ExpenseListProps) {
     <div className="overflow-x-auto">
       {budgets.length ? (
         <div className="mt-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <h1 className="font-bold text-xl md:text-4xl text-slate-900">
               {header}
             </h1>

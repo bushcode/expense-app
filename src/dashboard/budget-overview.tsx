@@ -92,6 +92,11 @@ function BudgetOverview() {
               {Math.floor(percentageLeft)}% deficit.
             </span>
           )}
+          <CreateExpenseButton
+            variant="ghost"
+            budgets={selectionBudget}
+            size="default"
+          />
         </>
       </div>
 
@@ -101,7 +106,6 @@ function BudgetOverview() {
             <h1 className="font-bold text-2xl md:text-4xl text-slate-900">
               Expenses
             </h1>
-            <CreateExpenseButton variant="ghost" budgets={selectionBudget} />
           </div>
           <ExpensesTable
             expenses={matchingExpenses}

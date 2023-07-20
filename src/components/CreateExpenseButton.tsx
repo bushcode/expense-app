@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from "./ui/button";
+import Button, { ButtonProps, ButtonVariants } from "./ui/button";
 import { Icons } from "./Icons";
 
 import {
@@ -28,6 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Budget } from "types";
+import { cn } from "@/lib/utils";
 
 type FormData = z.infer<typeof createExpenseValidator>;
 
@@ -38,6 +39,7 @@ interface CreateExpenseButtonProps extends ButtonProps {
 export default function CreateExpenseButton({
   variant,
   className,
+  size,
   ...props
 }: CreateExpenseButtonProps) {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -103,7 +105,7 @@ export default function CreateExpenseButton({
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="default" size="sm">
+          <Button className={cn(ButtonVariants({ variant, size }), className)}>
             <Icons.banknote size={14} className="mr-1" /> Create Expense
           </Button>
         </DialogTrigger>

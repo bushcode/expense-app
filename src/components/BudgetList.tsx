@@ -33,10 +33,10 @@ export default function BudgetList({ header, budgets }: BudgetListProps) {
         <EmptyState>
           <EmptyState.Icon name="wallet" className="text-slate-800" />
           <EmptyState.Title>You haven't created any budgets.</EmptyState.Title>
-          <EmptyState.Description>
+          <EmptyState.Description className="mb-2">
             Start planning your funds. Create a budget.
-            <CreateBudgetButton variant="outline" className="mt-3" size="sm" />
           </EmptyState.Description>
+          <CreateBudgetButton variant="ghost" size="default" />
         </EmptyState>
       )}
     </>
