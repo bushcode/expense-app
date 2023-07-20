@@ -8,7 +8,6 @@ interface FirestoreWrapperProps {
 export default function FirestoreWrapper({ children }: FirestoreWrapperProps) {
   const { data: firestoreInstance } = useInitFirestore(async (firebaseApp) => {
     const db = initializeFirestore(firebaseApp, {});
-    // await enableIndexedDbPersistence(db);
     return db;
   });
 

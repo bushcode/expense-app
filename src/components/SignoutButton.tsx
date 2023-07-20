@@ -29,6 +29,7 @@ export default function SignOutButton({ ...props }: SignOutButtonInterface) {
     <Button
       {...props}
       variant="ghost"
+      size="sm"
       onClick={async () => {
         setIsSigningOut(true);
         signOut(auth);

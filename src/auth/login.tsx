@@ -1,71 +1,46 @@
-import { useState } from "react";
 import Button from "../components/ui/button";
 import { Chrome, Github, MessagesSquare } from "lucide-react";
-import { useAuth, useFirestore } from "reactfire";
-import { GoogleAuthProvider, signInWithPopup, Auth, User } from "firebase/auth";
-
-import {
-  Firestore,
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { useAuth } from "reactfire";
+import { GoogleAuthProvider, signInWithPopup, Auth } from "firebase/auth";
+import { Icons } from "../components/Icons";
 
 type Props = {};
 
 function Login({}: Props) {
   const auth = useAuth();
-  const db = useFirestore();
 
   const signInWithGoogle = async (auth: Auth) => {
     const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    await createGroceryList(result?.user);
-  };
-
-  const createGroceryList = (user: User) => {
-    const groceriesColRef = collection(db, "users", user?.uid);
-    // const userRef = doc(db, "users", "counter");
-
-    console.log(groceriesColRef);
-    return addDoc(groceriesColRef, {
-      created: serverTimestamp(),
-      user: {
-        userName: user?.displayName,
-        userId: user?.uid,
-        email: user?.email,
-      },
-    });
+    await signInWithPopup(auth, provider);
   };
 
   return (
     <div className="relative items-center justify-center flex h-screen flex-col">
       <div className="h-full flex items-center justify-center container px-6 text-gray-500 md:px-12 xl:px-40">
-        <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
+        <div className="m-auto w-full md:w-8/12 lg:w-6/12 xl:w-6/12">
           <div className="relative rounded-xl bg-white shadow-xl">
             <div className="absolute h-full w-full">
               <div className="max-w-lg">
-                <div className="animation-delay-2000 absolute right-0 top-10 h-32 w-32 animate-blob rounded-full bg-gray-600 mix-blend-multiply blur-2xl filter"></div>
+                <div className="animation-delay-2000 absolute right-0 top-10 w-10 h-10 md:h-32 md:w-32 animate-blob rounded-full bg-gray-600 mix-blend-multiply blur-2xl filter"></div>
               </div>
             </div>
             <div className="p-6 sm:p-16">
               <div className="space-y-4">
                 <div className="flex gap-1 items-center">
                   <div className="rounded-lg h-10 w-10 flex justify-center items-center bg-slate-800">
-                    <MessagesSquare className="text-white w-10" />
+                    <Icons.Logo className="text-white w-10" />
                   </div>
-                  <h1 className="text-4xl text-slate-800">
+                  <h1 className="text-2xl md:text-4xl text-slate-800">
                     <span className="font-bold">Dentsu</span>
-                    <span className="font-light">Chat</span>
+                    <span className="font-light">Finance</span>
                   </h1>
                 </div>
 
-                <h2 className="mb-8 text-2xl text-slate-600 font-semibold">
+                <h2 className="mb-8 text-lg md:text-2xl text-slate-600 font-semibold">
                   Sign in to continue <br />
                 </h2>
               </div>
-              <div className="mt-12 grid space-y-4">
+              <div className="mt-8 grid space-y-4">
                 <Button
                   variant="default"
                   className="relative flex gap-2 items-center justify-center"
@@ -75,13 +50,13 @@ function Login({}: Props) {
                   Continue with Google
                 </Button>
 
-                <Button
+                {/* <Button
                   variant="outline"
                   className="relative flex gap-2 items-center justify-center"
                 >
                   <Github />
                   Continue with Github
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>

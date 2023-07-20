@@ -1,19 +1,24 @@
-import { useNavigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
 
 export const AuthWrapper = ({
   children,
   fallback,
 }: React.PropsWithChildren<{ fallback: JSX.Element }>): JSX.Element => {
-  const { data: signInCheckResult } = useSigninCheck();
-  const navigate = useNavigate();
+  const { status, data: signInCheckResult } = useSigninCheck();
 
   if (!children) {
     throw new Error("Children must be provided");
   }
 
+  if (status === "loading") {
+    return <span>loading...</span>;
+  }
+
   if (!signInCheckResult.signedIn) {
-    navigate("/");
+    // console.log("running...");
+    if (window.location.pathname !== "/") {
+      window.location.assign("/");
+    }
     return fallback;
   } else {
     return children as JSX.Element;
