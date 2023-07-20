@@ -16,16 +16,18 @@ export default function DashboardLayout() {
           <Navbar items={dashboardConfig.navLinks} />
 
           <div className="flex gap-2 items-center">
-            <div className="hidden border rounded-lg pr-2 h-9 flex gap-2 items-center">
+            <div className="sm:flex border rounded-lg  h-9 sm:w-auto  flex gap-2 items-center">
               {user?.photoURL ? (
-                <img
-                  src={user?.photoURL as string}
-                  alt={user?.displayName as string}
-                  className="rounded-lg h-8 w-8"
-                />
+                <div className="w-9 h-9">
+                  <img
+                    src={user?.photoURL as string}
+                    alt={user?.displayName as string}
+                    className="rounded-lg object-fill w-full h-full"
+                  />
+                </div>
               ) : null}
 
-              <span className="text-slate-600 text-sm">
+              <span className="text-slate-600 hidden sm:inline-block text-sm pr-2">
                 {user?.displayName}
               </span>
             </div>
