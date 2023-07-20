@@ -14,6 +14,7 @@ const CreateBudgetButton = lazy(
 
 export default function BudgetList({ header }: BudgetListProps) {
   const { budgets } = useBudgetContext();
+  const dashboardBudgets = budgets.slice(0, 6);
   return (
     <>
       <div className="py-2">
@@ -26,7 +27,7 @@ export default function BudgetList({ header }: BudgetListProps) {
 
         {budgets.length ? (
           <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-[68rem] md:grid-cols-3 grid-cols-1">
-            {budgets.map((budget) => (
+            {dashboardBudgets.map((budget) => (
               <BudgetCard budgets={budgets} budget={budget} key={budget.id} />
             ))}
           </div>

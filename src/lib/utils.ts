@@ -29,7 +29,10 @@ export function setProgress({ percentage }: { percentage: number }) {
   return background;
 }
 
-export const sumBudgetExpenses = (budgetId: string, expenses: Expense[]) => {
+export const sumBudgetExpenses = (
+  budgetId: string | undefined,
+  expenses: Expense[]
+) => {
   const budgetSpent = expenses.reduce((acc, expense) => {
     if (expense.budgetId !== budgetId) return acc;
     return (acc += expense.amount);

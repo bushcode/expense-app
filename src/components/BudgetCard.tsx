@@ -27,7 +27,7 @@ function BudgetCard({ budget, budgets }: BudgetCardProps) {
   const matchingBudget = budgets.find((budget) => budget.id === budgetId);
 
   useEffect(() => {
-    const spent = sumBudgetExpenses(matchingBudget!.id, expenses);
+    const spent = sumBudgetExpenses(matchingBudget?.id, expenses);
     const budgetBalance = budget.amount - spent;
     setTotalSpent(spent);
     setTotalRemaining(budgetBalance);
