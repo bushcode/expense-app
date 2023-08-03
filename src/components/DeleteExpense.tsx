@@ -13,22 +13,19 @@ import { Icons } from "./Icons";
 interface DeleteExpenseProps {
   openDialog: boolean;
   isDeleting: boolean;
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   onDelete: () => void;
+  toggleModal: () => void;
 }
 
-export default function DeleteExpenseProps({
+export default function DeleteExpense({
   openDialog,
-  setOpenDialog,
   onDelete,
   isDeleting,
+  toggleModal,
 }: DeleteExpenseProps) {
   return (
     <>
-      <AlertDialog
-        open={openDialog}
-        onOpenChange={() => setOpenDialog(!openDialog)}
-      >
+      <AlertDialog open={openDialog} onOpenChange={toggleModal}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>

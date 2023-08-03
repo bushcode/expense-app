@@ -31,12 +31,13 @@ function BudgetCard({ budget, budgets }: BudgetCardProps) {
     const budgetBalance = budget.amount - spent;
     setTotalSpent(spent);
     setTotalRemaining(budgetBalance);
-  });
+  }, [expenses, matchingBudget?.id, budget.amount]);
 
   const percentageLeft = calculateBudgetPercentageLeft(
     budget.amount,
     totalSpent
   );
+  const warningThreshold = 15;
 
   return (
     <Link
@@ -49,7 +50,7 @@ function BudgetCard({ budget, budgets }: BudgetCardProps) {
             {budget.name}
           </h3>
 
-          {percentageLeft <= 15 ? (
+          {percentageLeft <= warningThreshold ? (
             <div className="flex gap-1 items-center my-1">
               <Icons.alert className="w-4 h-4 text-yellow-400" />
               <span className="text-xs text-red-500">

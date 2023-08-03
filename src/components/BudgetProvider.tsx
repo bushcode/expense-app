@@ -24,7 +24,7 @@ export default function BudgetProvider({ children }: BudgetProviderProps) {
 
   const budgetData = budgets as Budget[];
 
-  useEffect(() => {}, [budgetData]);
+  // useEffect(() => {}, [budgetData]);
 
   return (
     <BudgetContext.Provider value={{ budgets: budgetData }}>

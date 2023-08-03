@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 
 import {
   Table,
@@ -35,9 +35,13 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
     return matchingBudget ? matchingBudget.name : undefined;
   }
 
+  const toggleModal = useCallback(() => {
+    setOpen((prevOpen) => !prevOpen);
+  }, []);
+
   function handleDeleteExpense(id: string) {
     setExpenseId(id);
-    setOpen(!open);
+    toggleModal();
   }
 
   const deleteExpense = async (expenseId: string) => {
@@ -52,7 +56,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
         title: "Success",
         description: "Expense successfully deleted.",
       });
-      setOpen(false);
+      toggleModal();
     } catch (error) {
       setIsDeleteLoading(false);
       toast({
@@ -77,7 +81,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
       </TableHeader>
       <TableBody>
         {expenses.map((expense, index) => (
-          <>
+          <Fragment key={expense.id}>
             <TableRow key={expense.id} className="text-slate-800">
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell className="font-medium">{expense.name}</TableCell>
@@ -106,11 +110,11 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
             </TableRow>
             <DeleteExpenseButton
               openDialog={open}
-              setOpenDialog={setOpen}
               onDelete={() => deleteExpense(expenseId)}
               isDeleting={isDeleteLoading}
+              toggleModal={toggleModal}
             />
-          </>
+          </Fragment>
         ))}
       </TableBody>
     </Table>
