@@ -37,7 +37,7 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
 
   const toggleModal = useCallback(() => {
     setOpen((prevOpen) => !prevOpen);
-  }, []);
+  }, [open]);
 
   function handleDeleteExpense(id: string) {
     setExpenseId(id);
@@ -56,7 +56,6 @@ function ExpensesTable({ expenses, tableCaption }: ExpenseTableProps) {
         title: "Success",
         description: "Expense successfully deleted.",
       });
-      toggleModal();
     } catch (error) {
       setIsDeleteLoading(false);
       toast({
