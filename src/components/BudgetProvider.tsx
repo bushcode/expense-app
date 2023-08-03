@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { Budget } from "../../types";
 import { collection, orderBy, query, where } from "firebase/firestore";
@@ -23,8 +22,6 @@ export default function BudgetProvider({ children }: BudgetProviderProps) {
   });
 
   const budgetData = budgets as Budget[];
-
-  // useEffect(() => {}, [budgetData]);
 
   return (
     <BudgetContext.Provider value={{ budgets: budgetData }}>
