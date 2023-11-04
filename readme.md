@@ -1,4 +1,4 @@
-# Dentsu Assessment - An Expense App
+# An Expense App
 
 ## Project Description
 
